@@ -40,7 +40,7 @@ class DatabaseHelper {
   Future<List<Desarrolador>> getDev() async {
     final snapshot = await _firestore.collection("desarroladores").get();
     return snapshot.docs.map((doc) {
-      final data = doc.data() as Map<String, dynamic>;
+      final data = doc.data();
       final bool disponible = data['disponible'] ?? false;
 
       return Desarrolador(
