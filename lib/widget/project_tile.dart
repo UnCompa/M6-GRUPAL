@@ -24,7 +24,7 @@ class ProjectTile extends StatelessWidget {
         subtitle: Column(
           children: [
             Text(
-              'Descripcion:${project.descripcion}\nInicia: ${project.fechaInicio}\nPresupuesto: ${project.presupuesto}',
+              'Descripcion:${project.descripcion}\nInicia: ${project.fechaInicio}\nPresupuesto: ${project.presupuesto}\nPrioridad: ${project.prioridad}',
             ),
           ],
         ),

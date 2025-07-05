@@ -55,27 +55,43 @@ class _HomePageProyectsState extends State<HomePageProyects> {
         ),
       ),
       drawer: Drawer(
-        backgroundColor: Colors.redAccent,
+        surfaceTintColor: Colors.white,
+        backgroundColor: Colors.white,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
-              child: Text(
-                "Desarrolladores 💻",
-                style: TextStyle(color: Colors.white),
-              ),
+            SizedBox(height: 32),
+            ListTile(
+              leading: Icon(Icons.people, color: Colors.green),
+              title: Text('Desarrolladores'),
               onTap: () {
                 Navigator.pushNamed(context, RoutesPage.homeDesarrolladores);
               },
             ),
-            GestureDetector(
-              child: Text("Tareas 🗒️", style: TextStyle(color: Colors.white)),
+            ListTile(
+              leading: Icon(Icons.task, color: Colors.blue),
+              title: Text('Tareas'),
               onTap: () {
                 Navigator.pushNamed(context, RoutesPage.homeTareas);
               },
             ),
-            GestureDetector(
-              child: Text("Proyecto ⚙️", style: TextStyle(color: Colors.white)),
+            ListTile(
+              leading: Icon(Icons.settings, color: Colors.red),
+              title: Text('Proyecto'),
+              selected: true,
+              selectedTileColor: Colors.red.shade50,
+              onTap: () {
+                Navigator.pushNamed(context, RoutesPage.homeProyectos);
+              },
+            ),
+            const Spacer(),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: Text(
+                '© 2025 Gestión de Equipos',
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
             ),
           ],
         ),

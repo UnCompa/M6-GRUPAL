@@ -105,10 +105,26 @@ class AddTareaPageState extends State {
                     }
                   }
                 },
+                onTap: () async {
+                  final DateTime? pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime(2100),
+                  );
+                  if (pickedDate != null) {
+                    setState(() {
+                      fechaEntrega.text =
+                          "${pickedDate.day.toString().padLeft(2, '0')}/${pickedDate.month.toString().padLeft(2, '0')}/${pickedDate.year}";
+                    });
+                  }
+                },
               ),
               SizedBox(height: 20),
               TextFormField(
                 controller: niveldescripcionController,
+                maxLength: 1,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: "Nivel",
                   border: OutlineInputBorder(

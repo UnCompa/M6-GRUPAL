@@ -58,8 +58,11 @@ class _EditDevPageState extends State<EditDevPage> {
             ),
             TextField(
               controller: expController,
-              decoration: const InputDecoration(labelText: "Nota"),
-              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(labelText: "Experiencia"),
+              keyboardType: TextInputType.numberWithOptions(
+                decimal: false,
+                signed: false,
+              ),
             ),
             DropdownButton<String>(
               value: disponible,

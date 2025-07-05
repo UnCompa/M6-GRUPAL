@@ -124,9 +124,25 @@ class EditTareaPageState extends State<EditTareaPage> {
                     }
                   }
                 },
+                onTap: () async {
+                  final DateTime? pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime(2100),
+                  );
+                  if (pickedDate != null) {
+                    setState(() {
+                      fechaEntrega.text =
+                          "${pickedDate.day.toString().padLeft(2, '0')}/${pickedDate.month.toString().padLeft(2, '0')}/${pickedDate.year}";
+                    });
+                  }
+                },
               ),
               SizedBox(height: 20),
               TextFormField(
+                maxLength: 1,
+                keyboardType: TextInputType.number,
                 controller: niveldescripcionController,
                 decoration: InputDecoration(
                   labelText: "Nivel",

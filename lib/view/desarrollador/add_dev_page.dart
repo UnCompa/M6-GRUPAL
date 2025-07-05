@@ -42,7 +42,10 @@ class _AddDevPageState extends State<AddDevPage> {
             TextField(
               controller: xpController,
               decoration: const InputDecoration(labelText: "Experiencia"),
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.numberWithOptions(
+                decimal: false,
+                signed: false,
+              ),
             ),
             DropdownButton<String>(
               value: disponible,
