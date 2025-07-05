@@ -65,6 +65,8 @@ class _HomePageState extends State<HomePageDev> {
             ListTile(
               leading: Icon(Icons.people, color: Colors.green),
               title: Text('Desarrolladores'),
+              selected: true,
+              selectedTileColor: Colors.green.shade50,
               onTap: () {
                 Navigator.pushNamed(context, RoutesPage.homeDesarrolladores);
               },
@@ -79,7 +81,6 @@ class _HomePageState extends State<HomePageDev> {
             ListTile(
               leading: Icon(Icons.settings, color: Colors.red),
               title: Text('Proyecto'),
-              selected: true,
               selectedTileColor: Colors.red.shade50,
               onTap: () {
                 Navigator.pushNamed(context, RoutesPage.homeProyectos);
@@ -130,6 +131,8 @@ class _HomePageState extends State<HomePageDev> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
         onPressed: () async {
           final result = await Navigator.pushNamed(
             context,

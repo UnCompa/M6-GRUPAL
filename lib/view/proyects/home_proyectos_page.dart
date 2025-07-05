@@ -37,6 +37,7 @@ class _HomePageProyectsState extends State<HomePageProyects> {
       appBar: AppBar(
         backgroundColor: Colors.red,
         centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.white),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -57,6 +58,7 @@ class _HomePageProyectsState extends State<HomePageProyects> {
       drawer: Drawer(
         surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -102,7 +104,18 @@ class _HomePageProyectsState extends State<HomePageProyects> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No hay proyectos disponibles'));
+            return const Center(
+              heightFactor: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.edit_document, size: 124, color: Colors.grey),
+                  SizedBox(height: 16),
+                  Text('No hay proyectos disponibles'),
+                ],
+              ),
+            );
           } else {
             return ListView(
               children: snapshot.data!
@@ -130,6 +143,8 @@ class _HomePageProyectsState extends State<HomePageProyects> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.red,
+        foregroundColor: Colors.white,
         onPressed: () async {
           final result = await Navigator.pushNamed(
             context,

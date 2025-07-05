@@ -19,14 +19,13 @@ class ProjectTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
+      borderOnForeground: true,
+      shadowColor: Colors.red,
+      surfaceTintColor: Colors.red,
       child: ListTile(
         title: Text(project.nombre),
-        subtitle: Column(
-          children: [
-            Text(
-              'Descripcion:${project.descripcion}\nInicia: ${project.fechaInicio}\nPresupuesto: ${project.presupuesto}\nPrioridad: ${project.prioridad}',
-            ),
-          ],
+        subtitle: Text(
+          'Descripcion: ${project.descripcion}\nInicia: ${project.fechaInicio}\nPresupuesto: ${project.presupuesto}\nPrioridad: ${project.prioridad}',
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
@@ -50,8 +49,16 @@ class ProjectTile extends StatelessWidget {
                   : Icon(Icons.check_circle_outline),
               color: project.entregado ? Colors.green : Colors.grey,
             ),
-            IconButton(onPressed: onEdit, icon: Icon(Icons.edit)),
-            IconButton(onPressed: onDelete, icon: Icon(Icons.delete)),
+            IconButton(
+              onPressed: onEdit,
+              icon: Icon(Icons.edit),
+              color: Colors.blue,
+            ),
+            IconButton(
+              onPressed: onDelete,
+              icon: Icon(Icons.delete),
+              color: Colors.red,
+            ),
           ],
         ),
       ),

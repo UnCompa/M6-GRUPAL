@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePageTarea> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Colors.blue,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,6 +65,8 @@ class _HomePageState extends State<HomePageTarea> {
             ListTile(
               leading: Icon(Icons.task, color: Colors.blue),
               title: Text('Tareas'),
+              selected: true,
+              selectedTileColor: Colors.blue.shade50,
               onTap: () {
                 Navigator.pushNamed(context, RoutesPage.homeTareas);
               },
@@ -71,7 +74,6 @@ class _HomePageState extends State<HomePageTarea> {
             ListTile(
               leading: Icon(Icons.settings, color: Colors.red),
               title: Text('Proyecto'),
-              selected: true,
               selectedTileColor: Colors.red.shade50,
               onTap: () {
                 Navigator.pushNamed(context, RoutesPage.homeProyectos);
@@ -97,7 +99,18 @@ class _HomePageState extends State<HomePageTarea> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No hay tareas'));
+            return const Center(
+              heightFactor: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.add_task, size: 124, color: Colors.grey),
+                  SizedBox(height: 16),
+                  Text('No hay tareas'),
+                ],
+              ),
+            );
           } else {
             final tareas = snapshot.data!;
             return ListView.builder(
@@ -124,6 +137,8 @@ class _HomePageState extends State<HomePageTarea> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
         onPressed: () {
           Navigator.push(
             context,

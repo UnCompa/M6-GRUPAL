@@ -16,8 +16,8 @@ class AddTareaPageState extends State {
   final tituloController = TextEditingController();
   final fechaEntrega = TextEditingController();
   final niveldescripcionController = TextEditingController();
-  final completadadescripcionController = TextEditingController();
   String urgencia = "Alta";
+  String completadadescripcionController = "Pendiente";
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -31,7 +31,7 @@ class AddTareaPageState extends State {
           descripcion: descripcionController.text,
           fechaEntrega: fechaEntrega.text,
           nivel: int.parse(niveldescripcionController.text),
-          completada: completadadescripcionController.text,
+          completada: completadadescripcionController,
           urgencia: urgencia,
         );
         await DatabaseHelper().insertTarea(tarea);
@@ -44,7 +44,11 @@ class AddTareaPageState extends State {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text("Registro de tareas")),
+      appBar: AppBar(
+        title: Text("Registro de tareas"),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
       body: Padding(
         padding: EdgeInsetsGeometry.all(20),
         child: Form(
@@ -140,20 +144,15 @@ class AddTareaPageState extends State {
                 },
               ),
               SizedBox(height: 20),
-              TextFormField(
-                controller: completadadescripcionController,
-                decoration: InputDecoration(
-                  labelText: "Completada",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Debe especificar el nivel";
-                  } else {
-                    return null;
-                  }
+              DropdownButton(
+                value: completadadescripcionController,
+                items: ["Completada", "Pendiente", "En proceso"]
+                    .map((s) => DropdownMenuItem(value: s, child: Text(s)))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    completadadescripcionController = value!;
+                  });
                 },
               ),
               SizedBox(height: 20),

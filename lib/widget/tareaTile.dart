@@ -23,7 +23,7 @@ class TareaTile extends StatelessWidget {
           'Descripción: ${tarea.descripcion}\n'
           'Nivel: ${tarea.nivel} | Urgencia: ${tarea.urgencia}\n'
           'Fecha entrega: ${tarea.fechaEntrega}\n'
-          'Completada: ${tarea.completada}',
+          'Estado: ${tarea.completada}',
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
