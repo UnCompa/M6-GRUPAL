@@ -19,7 +19,15 @@ class _AddDevPageState extends State<AddDevPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Agregar Desarrolador")),
+      appBar: AppBar(
+        title: Text(
+          'Agregar desarrollador',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
+        elevation: 10,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -57,6 +65,11 @@ class _AddDevPageState extends State<AddDevPage> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+                minimumSize: Size(double.infinity, 50),
+              ),
               onPressed: () async {
                 if (disponible == "Disponible") {
                   disponible = true;

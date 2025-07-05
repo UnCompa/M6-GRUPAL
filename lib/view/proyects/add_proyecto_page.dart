@@ -23,7 +23,10 @@ class _AddProjectPageState extends State<AddProjectPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Agregar Proyecto'),
+        title: Text(
+          'Crear proyecto',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.redAccent,
         foregroundColor: Colors.white,
         elevation: 10,

@@ -45,7 +45,10 @@ class AddTareaPageState extends State {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Registro de tareas"),
+        title: Text(
+          'Registro de tareas',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),
@@ -169,6 +172,11 @@ class AddTareaPageState extends State {
               ),
               SizedBox(height: 20),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  minimumSize: Size(double.infinity, 50),
+                ),
                 onPressed: () {
                   insertTarea();
                 },
