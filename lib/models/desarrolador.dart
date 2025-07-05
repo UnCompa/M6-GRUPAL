@@ -1,9 +1,9 @@
 class Desarrolador {
-  String id;
-  String nombre;
-  String rol;
-  int experiencia;
-  bool disponible;
+  final String id;
+  final String nombre;
+  final String rol;
+  final int experiencia;
+  final bool disponible;
 
   Desarrolador({
     required this.id,
@@ -15,7 +15,6 @@ class Desarrolador {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'nombre': nombre,
       'rol': rol,
       'experiencia': experiencia,

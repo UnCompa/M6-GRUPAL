@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_equipos/desarrollador/models/desarrolador.dart';
+import 'package:gestion_equipos/models/desarrolador.dart';
 
 class Devtile extends StatelessWidget {
   final Desarrolador dev;

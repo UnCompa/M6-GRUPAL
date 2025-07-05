@@ -21,6 +21,7 @@ class Project {
     return {
       'id': id,
       'nombre': nombre,
+      'descripcion': descripcion,
       'fechaInicio': fechaInicio,
       'presupuesto': presupuesto,
       'entregado': entregado,

@@ -2,7 +2,7 @@ import 'dart:ffi' hide Size;
 
 import 'package:flutter/material.dart';
 import 'package:gestion_equipos/models/project.dart';
-import 'package:gestion_equipos/services/database_helper.dart';
+import 'package:gestion_equipos/services/databaseHelper.dart';
 
 class AddProjectPage extends StatefulWidget {
   const AddProjectPage({super.key});
@@ -49,6 +49,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
               cursorColor: Colors.red,
               keyboardType: TextInputType.text,
             ),
+            SizedBox(height: 16),
             TextField(
               controller: _descriptionController,
               decoration: InputDecoration(
@@ -66,19 +67,25 @@ class _AddProjectPageState extends State<AddProjectPage> {
               cursorColor: Colors.red,
               keyboardType: TextInputType.text,
             ),
-            DropdownButton<String>(
-              value: _prioridadController,
-              items: ['Alta', 'Media', 'Baja'].map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  _prioridadController = newValue!;
-                });
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text("Prioridad"),
+                DropdownButton<String>(
+                  value: _prioridadController,
+                  items: ['Alta', 'Media', 'Baja'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _prioridadController = newValue!;
+                    });
+                  },
+                ),
+              ],
             ),
             TextFormField(
               controller: _fechaInicioController,
@@ -161,7 +168,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
               ),
               onPressed: () async {
                 final project = Project(
-                  id: '',
+                  id: DateTime.now().millisecondsSinceEpoch.toString(),
                   nombre: _nombreController.text,
                   descripcion: _descriptionController.text,
                   fechaInicio: _fechaInicioController.text,

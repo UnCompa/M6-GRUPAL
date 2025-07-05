@@ -1,5 +1,6 @@
-import '../models/desarrolador.dart';
-import '../services/database_helper.dart';
+import 'package:gestion_equipos/models/desarrolador.dart';
+import 'package:gestion_equipos/services/databaseHelper.dart';
+
 import 'package:flutter/material.dart';
 
 class AddDevPage extends StatefulWidget {

@@ -1,6 +1,6 @@
-import '../models/desarrolador.dart';
-import '../services/database_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:gestion_equipos/models/desarrolador.dart';
+import 'package:gestion_equipos/services/databaseHelper.dart';
 
 class EditDevPage extends StatefulWidget {
   final Desarrolador desarrolador;
@@ -24,7 +24,7 @@ class _EditDevPageState extends State<EditDevPage> {
     expController = TextEditingController(
       text: widget.desarrolador.experiencia.toString(),
     );
-    disponible = widget.desarrolador.disponible.toString();
+    disponible = widget.desarrolador.disponible;
 
     if (disponible == true) {
       disponible = "Disponible";

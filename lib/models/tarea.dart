@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Tareas {
+  final String docId;
   final int id;
   final String titulo;
   final String descripcion;
@@ -8,7 +9,9 @@ class Tareas {
   final int nivel;
   final String completada;
   final String urgencia;
+
   Tareas({
+    required this.docId,
     required this.id,
     required this.titulo,
     required this.descripcion,
@@ -20,6 +23,7 @@ class Tareas {
 
   Map<String, dynamic> toMap() {
     return {
+      "id": id,
       "titulo": titulo,
       "descripcion": descripcion,
       "fechaEntrega": fechaEntrega,
@@ -32,6 +36,7 @@ class Tareas {
   factory Tareas.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return Tareas(
+      docId: doc.id,
       id: data['id'] ?? 0,
       titulo: data['titulo'] ?? '',
       descripcion: data['descripcion'] ?? '',

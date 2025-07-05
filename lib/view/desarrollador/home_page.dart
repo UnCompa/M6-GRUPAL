@@ -1,47 +1,47 @@
-import 'package:flutter/material.dart';
-import 'package:gestion_equipos/models/project.dart';
+import 'package:gestion_equipos/models/desarrolador.dart';
 import 'package:gestion_equipos/routes/routes.dart';
 import 'package:gestion_equipos/services/databaseHelper.dart';
-import 'package:gestion_equipos/view/proyects/edit_proyecto_page.dart';
-import 'package:gestion_equipos/widget/project_tile.dart';
+import 'package:gestion_equipos/view/desarrollador/edit_dev_page.dart';
+import 'package:gestion_equipos/widget/devTile.dart';
 
-class HomePageProyects extends StatefulWidget {
-  const HomePageProyects({super.key});
+import 'package:flutter/material.dart';
+
+class HomePageDev extends StatefulWidget {
+  const HomePageDev({super.key});
 
   @override
-  State<StatefulWidget> createState() => _HomePageProyectsState();
+  State<StatefulWidget> createState() => _HomePageState();
 }
 
-class _HomePageProyectsState extends State<HomePageProyects> {
+class _HomePageState extends State<HomePageDev> {
+  late Future<List<Desarrolador>> _devList;
+
   @override
   void initState() {
     super.initState();
     _refreshList();
   }
 
-  void _refreshList() {
+  void _refreshList() async {
     setState(() {
-      _projectList = DatabaseHelper().getAllProjects();
+      _devList = DatabaseHelper().getDev();
     });
   }
 
-  void _deleteProject(String id) async {
-    await DatabaseHelper().deleteProject(id);
+  void _deletDev(String id) async {
+    await DatabaseHelper().deleteDev(id);
     _refreshList();
   }
 
-  late Future<List<Project>> _projectList;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
-        centerTitle: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Proyectos',
+              'Desarrolladores',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -64,9 +64,6 @@ class _HomePageProyectsState extends State<HomePageProyects> {
                 "Desarrolladores 💻",
                 style: TextStyle(color: Colors.white),
               ),
-              onTap: () {
-                Navigator.pushNamed(context, RoutesPage.homeDesarrolladores);
-              },
             ),
             GestureDetector(
               child: Text("Tareas 🗒️", style: TextStyle(color: Colors.white)),
@@ -76,30 +73,32 @@ class _HomePageProyectsState extends State<HomePageProyects> {
             ),
             GestureDetector(
               child: Text("Proyecto ⚙️", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pushNamed(context, RoutesPage.homeProyectos);
+              },
             ),
           ],
         ),
       ),
-      body: FutureBuilder<List<Project>>(
-        future: _projectList,
-        builder: (ctx, snapshot) {
+      body: FutureBuilder<List<Desarrolador>>(
+        future: _devList,
+        builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No hay proyectos disponibles'));
+            return const Center(child: Text('No hay Desarrolladores.'));
           } else {
             return ListView(
               children: snapshot.data!
                   .map(
-                    (project) => ProjectTile(
-                      project: project,
-                      onDelete: () => _deleteProject(project.id),
-                      onChecked: () => _refreshList(),
+                    (dev) => Devtile(
+                      dev: dev,
+                      onDelete: () => _deletDev(dev.id),
                       onEdit: () async {
                         final result = await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => EditProyectoPage(project: project),
+                            builder: (_) => EditDevPage(desarrolador: dev),
                           ),
                         );
                         if (result == true) {
@@ -117,7 +116,7 @@ class _HomePageProyectsState extends State<HomePageProyects> {
         onPressed: () async {
           final result = await Navigator.pushNamed(
             context,
-            RoutesPage.addProyecto,
+            RoutesPage.addDesarrollador,
           );
           if (result == true) {
             _refreshList();
